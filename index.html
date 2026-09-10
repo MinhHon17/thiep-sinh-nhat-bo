@@ -135,7 +135,7 @@
       perspective: 1600px;
       width: 100%;
       max-width: 440px;
-      height: 625px;
+      height: 615px;
       position: relative;
       margin: 0 auto;
       z-index: 10;
@@ -149,7 +149,7 @@
       width: 100%;
       height: 100%;
       border-radius: 20px;
-      padding: 24px 22px 14px;
+      padding: 22px 20px 12px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -164,6 +164,16 @@
       pointer-events: none;
       transform: rotateY(90deg) scale(0.95);
       overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Tùy chỉnh thanh cuộn siêu mượt nếu màn hình cực ngắn */
+    .book-card::-webkit-scrollbar {
+      width: 4px;
+    }
+    .book-card::-webkit-scrollbar-thumb {
+      background: var(--gold-accent);
+      border-radius: 4px;
     }
 
     /* Trang hiện tại: hiển thị 1 mặt vuông vức ngay giữa */
@@ -245,11 +255,15 @@
     }
 
     .body-p {
-      font-size: 1rem;
-      line-height: 1.72;
+      font-size: 0.96rem;
+      line-height: 1.65;
       color: #273746;
       text-align: justify;
       margin-bottom: 8px;
+    }
+    .body-p strong {
+      color: var(--text-blue);
+      font-weight: 700;
     }
     .body-p strong {
       color: var(--text-blue);
@@ -448,6 +462,44 @@
       top: 0; left: 0; width: 100vw; height: 100vh;
       pointer-events: none;
       z-index: 999;
+    }
+
+    /* ĐÁP ỨNG MỌI DÒNG ĐIỆN THOẠI DI ĐỘNG (RESPONSIVE) */
+    @media (max-width: 480px) {
+      body {
+        padding: 6px 6px 12px;
+      }
+      .single-book-stage {
+        height: 605px;
+        max-width: 100%;
+      }
+      .book-card {
+        padding: 16px 14px 10px;
+      }
+      .dock-controls {
+        margin-top: 8px;
+        gap: 6px;
+      }
+      .btn-dock {
+        padding: 10px 8px;
+        font-size: 0.88rem;
+      }
+      .top-bar {
+        margin-bottom: 6px;
+      }
+      .voyage-tag {
+        font-size: 0.76rem;
+        padding: 3px 12px;
+      }
+    }
+
+    @media (max-height: 720px) {
+      .single-book-stage {
+        height: 560px;
+      }
+      .btn-dock {
+        padding: 8px 6px;
+      }
     }
   </style>
 </head>
@@ -734,54 +786,56 @@
       </div>
     </div>
 
-    <!-- ================= TRANG 6: BỨC TÂM THƯ THẬT LÒNG CỦA ANH ================= -->
-    <div class="book-card" id="card6">
+    <!-- ================= TRANG 6: BỨC TÂM THƯ THẬT LÒNG CỦA ANH (HIỂN THỊ TRỌN VẸN 100% KHÔNG BỊ KHUẤT) ================= -->
+    <div class="book-card" id="card6" style="padding: 14px 16px 8px; overflow-y: auto; -webkit-overflow-scrolling: touch;">
       <div class="spine-edge"></div>
       <div class="corner-decor c-tl"></div>
       <div class="corner-decor c-tr"></div>
       <div class="corner-decor c-bl"></div>
       <div class="corner-decor c-br"></div>
 
-      <div>
-        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid rgba(196,151,51,0.35); padding-bottom: 6px; margin-bottom: 10px;">
-          <div style="font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 800; color: var(--text-blue); letter-spacing: 1.5px;">
-            📜 TRANG 6: LỜI TỰ ĐÁY LÒNG CON
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; min-height: 0;">
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1.5px solid rgba(196,151,51,0.35); padding-bottom: 4px; margin-bottom: 6px;">
+            <div style="font-family: 'Cinzel', serif; font-size: 0.92rem; font-weight: 800; color: var(--text-blue); letter-spacing: 1px;">
+              📜 TRANG 6: LỜI TỰ ĐÁY LÒNG CON
+            </div>
+            <div style="font-size: 1.1rem;">💌</div>
           </div>
-          <div style="font-size: 1.3rem;">💌</div>
-        </div>
 
-        <p style="font-size: 0.94rem; line-height: 1.68; color: #223344; text-align: justify; margin-bottom: 8px;">
-          Hôm nay con làm thiệp này, con muốn chúc bố thứ nhất luôn mạnh khỏe, luôn suôn sẻ trong mọi việc và luôn yêu thương anh em con và mẹ nữa.
-        </p>
-
-        <p style="font-size: 0.94rem; line-height: 1.68; color: #223344; text-align: justify; margin-bottom: 8px;">
-          Cảm ơn bố đã hi sinh vì những gánh nặng và những vất vả nhọc nhằn trong suốt cuộc hành trình này. Cảm ơn bố luôn là chỗ dựa vật chất và tinh thần cho cả gia đình mình. Con và các em luôn biết ơn về những điều bố làm để đổi lấy hành trình trưởng thành của bọn con.
-        </p>
-
-        <p style="font-size: 0.94rem; line-height: 1.68; color: #223344; text-align: justify; margin-bottom: 8px;">
-          Con mong rằng rồi mai sau này đi nữa mọi sự mong đợi của bố, cũng là sự trưởng thành của bọn con. Được nhìn thấy 4 chàng trai, 4 niềm ước mơ lớn nhất cuộc đời bố mong mỏi đều được trưởng thành và yên bề gia thất.
-        </p>
-
-        <div style="background: rgba(196, 151, 51, 0.12); border-left: 3.5px solid var(--gold-accent); padding: 8px 12px; border-radius: 0 8px 8px 0; margin: 6px 0;">
-          <p style="font-size: 0.93rem; line-height: 1.6; color: #113854; text-align: justify;">
-            Và có bạn bè hỏi con rằng đâu là hình mẫu lý tưởng của con, thì con chẳng ngần ngại nói là Bố của con. Con luôn tự hào với chúng nó rằng:
-            <strong style="color: #b8860b; display: block; text-align: center; margin: 4px 0; font-size: 1.02rem; font-family: 'Merriweather', serif;">
-              “Cái Bóng Lớn Nhất Trong Cuộc Đời Tao Chỉ Có Thể Là Bố Tao”
-            </strong>
-            Nên là nếu mong rằng có kiếp sau, không chỉ con và các em của con nữa đều mong điều tuyệt vời nhất là: 
-            <strong style="color: #b8860b; font-size: 1.02rem;">“Làm Con Của Bố Mẹ”</strong>.
+          <p style="font-size: 0.83rem; line-height: 1.45; color: #223344; text-align: justify; margin-bottom: 5px;">
+            Hôm nay con làm thiệp này, con muốn chúc bố thứ nhất luôn mạnh khỏe, luôn suôn sẻ trong mọi việc và luôn yêu thương anh em con và mẹ nữa.
           </p>
+
+          <p style="font-size: 0.83rem; line-height: 1.45; color: #223344; text-align: justify; margin-bottom: 5px;">
+            Cảm ơn bố đã hi sinh vì những gánh nặng và những vất vả nhọc nhằn trong suốt cuộc hành trình này. Cảm ơn bố luôn là chỗ dựa vật chất và tinh thần cho cả gia đình mình. Con và các em luôn biết ơn về những điều bố làm để đổi lấy hành trình trưởng thành của bọn con.
+          </p>
+
+          <p style="font-size: 0.83rem; line-height: 1.45; color: #223344; text-align: justify; margin-bottom: 5px;">
+            Con mong rằng rồi mai sau này đi nữa mọi sự mong đợi của bố, cũng là sự trưởng thành của bọn con. Được nhìn thấy 4 chàng trai, 4 niềm ước mơ lớn nhất cuộc đời bố mong mỏi đều được trưởng thành và yên bề gia thất.
+          </p>
+
+          <div style="background: rgba(196, 151, 51, 0.12); border-left: 3px solid var(--gold-accent); padding: 6px 10px; border-radius: 0 8px 8px 0; margin: 4px 0;">
+            <p style="font-size: 0.82rem; line-height: 1.42; color: #113854; text-align: justify; margin: 0;">
+              Và có bạn bè hỏi con rằng đâu là hình mẫu lý tưởng của con, thì con chẳng ngần ngại nói là Bố của con. Con luôn tự hào với chúng nó rằng:
+              <strong style="color: #b8860b; display: block; text-align: center; margin: 2px 0; font-size: 0.88rem; font-family: 'Merriweather', serif;">
+                “Cái Bóng Lớn Nhất Trong Cuộc Đời Tao Chỉ Có Thể Là Bố Tao”
+              </strong>
+              Nên là nếu mong rằng có kiếp sau, không chỉ con và các em của con nữa đều mong điều tuyệt vời nhất là: 
+              <strong style="color: #b8860b; font-size: 0.88rem;">“Làm Con Của Bố Mẹ”</strong>.
+            </p>
+          </div>
+
+          <div style="font-family: 'Alex Brush', cursive; font-size: 1.65rem; color: var(--gold-accent); text-align: right; line-height: 1.1; margin-top: 3px;">
+            Con trai cả & 4 anh em kính chúc! ❤️
+          </div>
         </div>
 
-        <div style="font-family: 'Alex Brush', cursive; font-size: 2rem; color: var(--gold-accent); text-align: right; line-height: 1; margin-top: 6px;">
-          Con trai cả & 4 anh em kính chúc! ❤️
+        <div class="page-footer" style="margin-top: 4px; padding-top: 3px;">
+          <span class="flip-hint" onclick="prevCard()">❮ Trang trước</span>
+          <span class="page-index">— 06 / 06 —</span>
+          <span class="flip-hint" onclick="goToCover()">Đầu sổ ❯</span>
         </div>
-      </div>
-
-      <div class="page-footer">
-        <span class="flip-hint" onclick="prevCard()">❮ Trang trước</span>
-        <span class="page-index">— 06 / 06 —</span>
-        <span class="flip-hint" onclick="goToCover()">Đầu sổ ❯</span>
       </div>
     </div>
 
