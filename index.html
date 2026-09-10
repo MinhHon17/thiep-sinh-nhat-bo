@@ -501,6 +501,109 @@
         padding: 8px 6px;
       }
     }
+
+    /* WIDGET NHẠC NỀN DU DƯƠNG */
+    .music-widget {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(8, 36, 58, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1.5px solid var(--gold-glow);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(244, 208, 111, 0.2);
+      padding: 6px 14px 6px 6px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .music-widget:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 16px rgba(244, 208, 111, 0.4);
+    }
+    .music-disc {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #2d3748 20%, #111827 21%, #111827 60%, #374151 61%, #111827 75%, #4b5563 76%, #111827 100%);
+      border: 2px solid var(--gold-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fed976;
+      font-size: 14px;
+      box-shadow: 0 0 10px rgba(244, 208, 111, 0.35);
+      transition: transform 0.3s;
+    }
+    .music-disc.playing {
+      animation: spinDisc 5s linear infinite;
+    }
+    @keyframes spinDisc {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .music-meta {
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+    .music-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .music-sub {
+      font-size: 0.68rem;
+      color: #cbd5e1;
+    }
+    .music-equalizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 12px;
+      margin-left: 2px;
+    }
+    .eq-bar {
+      width: 2.5px;
+      background: var(--gold-glow);
+      border-radius: 1px;
+      height: 3px;
+      transition: height 0.2s;
+    }
+    .playing .eq-bar:nth-child(1) { animation: soundBar 0.9s infinite ease-in-out alternate; }
+    .playing .eq-bar:nth-child(2) { animation: soundBar 0.7s infinite ease-in-out alternate 0.2s; }
+    .playing .eq-bar:nth-child(3) { animation: soundBar 1.1s infinite ease-in-out alternate 0.4s; }
+    @keyframes soundBar {
+      0% { height: 3px; }
+      100% { height: 12px; }
+    }
+    @media (max-width: 480px) {
+      .music-widget {
+        top: 10px;
+        right: 10px;
+        padding: 4px 10px 4px 4px;
+        gap: 6px;
+      }
+      .music-disc {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+      }
+      .music-title {
+        font-size: 0.73rem;
+      }
+      .music-sub {
+        font-size: 0.62rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -519,6 +622,29 @@
   <!-- Chú Rùa Biển thật bơi lội -->
   <img src="real_turtle.png" class="real-turtle-actor" alt="Rùa biển thật">
   <img src="real_fish.png" class="real-fish-actor-1" alt="Cá nhiệt đới thật">
+
+  <!-- Audio player nền -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="cha_gia_roi_dung_khong.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Nút đĩa nhạc nổi sang trọng -->
+  <div class="music-widget" id="musicWidget" onclick="toggleMusic()" title="Bật / Tắt nhạc nền">
+    <div class="music-disc" id="musicDisc">
+      <span>🎵</span>
+    </div>
+    <div class="music-meta">
+      <div class="music-title">
+        <span>Cha Già Rồi Đúng Không</span>
+        <div class="music-equalizer" id="musicEq">
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+        </div>
+      </div>
+      <div class="music-sub" id="musicStatusText">Chạm để bật nhạc • Phạm Hồng Phước</div>
+    </div>
+  </div>
 
   <!-- Tiêu đề đỉnh -->
   <div class="top-bar">
@@ -1060,6 +1186,58 @@
       requestAnimationFrame(animateFx);
     }
     animateFx();
+
+    // XỬ LÝ NHẠC NỀN DU DƯƠNG
+    const bgMusic = document.getElementById('bgMusic');
+    const musicDisc = document.getElementById('musicDisc');
+    const musicWidget = document.getElementById('musicWidget');
+    const musicStatusText = document.getElementById('musicStatusText');
+    let isMusicPlaying = false;
+    let hasUserInteracted = false;
+
+    // Giảm âm lượng lúc bắt đầu để nhạc êm dịu (khoảng 40%)
+    bgMusic.volume = 0.45;
+
+    function toggleMusic(e) {
+      if (e) e.stopPropagation();
+      if (isMusicPlaying) {
+        pauseMusic();
+      } else {
+        playMusic();
+      }
+    }
+
+    function playMusic() {
+      bgMusic.play().then(() => {
+        isMusicPlaying = true;
+        musicDisc.classList.add('playing');
+        musicWidget.classList.add('playing');
+        musicStatusText.textContent = 'Đang phát • Chạm để tắt';
+      }).catch(err => {
+        console.log('Autoplay blocked:', err);
+      });
+    }
+
+    function pauseMusic() {
+      bgMusic.pause();
+      isMusicPlaying = false;
+      musicDisc.classList.remove('playing');
+      musicWidget.classList.remove('playing');
+      musicStatusText.textContent = 'Đã tạm dừng • Chạm để phát';
+    }
+
+    // Tự động phát khi người xem chạm lần đầu vào bất kỳ đâu trên màn hình
+    function initAutoMusicOnFirstTouch() {
+      if (hasUserInteracted) return;
+      hasUserInteracted = true;
+      if (!isMusicPlaying) {
+        playMusic();
+      }
+      window.removeEventListener('click', initAutoMusicOnFirstTouch);
+      window.removeEventListener('touchstart', initAutoMusicOnFirstTouch);
+    }
+    window.addEventListener('click', initAutoMusicOnFirstTouch, { once: true });
+    window.addEventListener('touchstart', initAutoMusicOnFirstTouch, { once: true });
 
     updateCardView();
   </script>
