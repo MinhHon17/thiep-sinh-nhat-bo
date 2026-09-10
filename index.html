@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Cuốn Sổ Hải Trình - Chúc Mừng Sinh Nhật Thuyền Trưởng Bố</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --deep-teal: #08243a;
+      --azure-blue: #124b6e;
+      --gold-accent: #c49733;
+      --gold-glow: #f4d06f;
+      --page-bg: #fffefb;
+      --page-border: #e2d7be;
+      --text-dark: #1a2634;
+      --text-blue: #0e344e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      min-height: 100vh;
+      /* Nền bức tranh rạn san hô rùa biển 8K */
+      background: #092a47 url('coral_turtle_hd.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 10px 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(8, 36, 58, 0.18) 0%, rgba(8, 36, 58, 0.42) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Bong bóng nước sủi bọt */
+    .bubbles-container {
+      position: fixed;
+      bottom: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .bubble {
+      position: absolute;
+      bottom: -40px;
+      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.12));
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      animation: riseUp 14s infinite ease-in;
+    }
+    @keyframes riseUp {
+      0% { transform: translateY(0) scale(0.6); opacity: 0; }
+      15% { opacity: 0.7; }
+      85% { opacity: 0.7; }
+      100% { transform: translateY(-115vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Chú Rùa Biển thật bơi lội */
+    .real-turtle-actor {
+      position: fixed;
+      width: 130px;
+      height: auto;
+      pointer-events: none;
+      z-index: 3;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.45));
+      animation: realisticTurtleSwim 42s infinite linear;
+      opacity: 0.88;
+    }
+    @keyframes realisticTurtleSwim {
+      0% { bottom: 5%; left: -160px; transform: rotate(-18deg) scale(0.85); }
+      35% { bottom: 30%; left: 35vw; transform: rotate(-8deg) scale(1) translateY(-10px); }
+      65% { bottom: 50%; left: 65vw; transform: rotate(-22deg) scale(0.95) translateY(10px); }
+      100% { bottom: 80%; left: 115vw; transform: rotate(-15deg) scale(0.85); }
+    }
+
+    /* Cá nhiệt đới thật */
+    .real-fish-actor-1 {
+      position: fixed;
+      width: 85px;
+      height: auto;
+      pointer-events: none;
+      z-index: 3;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.35));
+      animation: realisticFishSwim1 25s infinite ease-in-out;
+      opacity: 0.9;
+    }
+    @keyframes realisticFishSwim1 {
+      0% { top: 18%; right: -120px; transform: scaleX(1) translateY(0); }
+      50% { top: 32%; right: 50vw; transform: scaleX(1) translateY(-15px); }
+      100% { top: 22%; right: 115vw; transform: scaleX(1) translateY(0); }
+    }
+
+    /* Thanh huy hiệu trên đỉnh */
+    .top-bar {
+      text-align: center;
+      margin-bottom: 8px;
+      z-index: 10;
+    }
+    .voyage-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      letter-spacing: 2.5px;
+      color: #fff9e6;
+      background: rgba(8, 36, 58, 0.78);
+      border: 1.5px solid var(--gold-glow);
+      padding: 4px 18px;
+      border-radius: 99px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+    }
+
+    /* SÂN KHẤU SỔ TAY 3D MỞ RỘNG HAI BÊN (GIỮ NGUYÊN FORM CŨ TRANG ĐÔI) */
+    .stage {
+      perspective: 2000px;
+      width: 960px;
+      max-width: 96vw;
+      height: 610px;
+      position: relative;
+      margin: 0 auto;
+      z-index: 10;
+    }
+
+    .book {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      box-shadow: 0 25px 60px rgba(4, 18, 30, 0.7), 0 0 30px rgba(244, 208, 111, 0.25);
+      border-radius: 14px;
+    }
+
+    /* TẤM NỀN TRÁI CỐ ĐỊNH */
+    .book-base-left {
+      position: absolute;
+      left: 0; top: 0;
+      width: 50%; height: 100%;
+      background: linear-gradient(145deg, #071f33 0%, #0d3251 100%);
+      border-radius: 14px 0 0 14px;
+      border: 2px solid var(--gold-glow);
+      border-right: none;
+      box-shadow: inset 0 0 45px rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 0;
+      color: var(--gold-glow);
+    }
+
+    /* Gáy sách nổi */
+    .spine-crease {
+      position: absolute;
+      left: calc(50% - 11px);
+      top: 0;
+      width: 22px;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        rgba(4,18,30,0.65) 0%, 
+        rgba(196,151,51,0.5) 30%, 
+        rgba(244,208,111,0.85) 50%, 
+        rgba(196,151,51,0.5) 70%, 
+        rgba(4,18,30,0.65) 100%);
+      z-index: 40;
+      pointer-events: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    /* MỖI TỜ LẬT 3D */
+    .sheet {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      transition: transform 1.05s cubic-bezier(0.645, 0.045, 0.355, 1);
+      cursor: pointer;
+    }
+
+    .sheet.flipped {
+      transform: rotateY(-180deg);
+    }
+
+    .sheet-side {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      backface-visibility: hidden;
+      padding: 24px 26px 16px;
+      overflow: hidden; /* KHÔNG CẦN KÉO THANH CUỘN */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sheet-side.front {
+      background: linear-gradient(135deg, #ffffff 0%, var(--page-bg) 65%, #f9f2e3 100%);
+      border-radius: 0 14px 14px 0;
+      border-left: 1px solid rgba(0,0,0,0.08);
+      box-shadow: inset 20px 0 30px -12px rgba(40, 25, 10, 0.12);
+    }
+
+    .sheet-side.back {
+      background: linear-gradient(225deg, #ffffff 0%, var(--page-bg) 65%, #f9f2e3 100%);
+      border-radius: 14px 0 0 14px;
+      transform: rotateY(180deg);
+      border-right: 1px solid rgba(0,0,0,0.08);
+      box-shadow: inset -20px 0 30px -12px rgba(40, 25, 10, 0.12);
+    }
+
+    /* BÌA TRƯỚC VÀ BÌA SAU HOÀNG GIA */
+    .cover-front .front {
+      background: linear-gradient(145deg, #09263e 0%, #114269 55%, #071f33 100%) !important;
+      border: 2.5px solid var(--gold-glow);
+      border-left: none;
+      color: #ffffff;
+      text-align: center;
+      box-shadow: inset 0 0 45px rgba(0,0,0,0.65), inset 12px 0 25px rgba(244, 208, 111, 0.2) !important;
+    }
+
+    .cover-back .back {
+      background: linear-gradient(215deg, #09263e 0%, #114269 55%, #071f33 100%) !important;
+      border: 2.5px solid var(--gold-glow);
+      border-right: none;
+      color: #ffffff;
+      box-shadow: inset 0 0 45px rgba(0,0,0,0.65), inset -12px 0 25px rgba(244, 208, 111, 0.2) !important;
+    }
+
+    /* Họa tiết góc sổ vàng */
+    .corner-decor {
+      position: absolute;
+      width: 22px; height: 22px;
+      border: 1.5px solid var(--gold-accent);
+      opacity: 0.65;
+      pointer-events: none;
+    }
+    .c-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+    .c-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+    .c-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+    .c-br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+    /* CHỮ TO RÕ NÉT */
+    .page-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--text-blue);
+      letter-spacing: 1.5px;
+      border-bottom: 1.5px solid rgba(196, 151, 51, 0.35);
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quote-merri {
+      font-family: 'Merriweather', serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-blue);
+      font-style: italic;
+      background: rgba(196, 151, 51, 0.08);
+      border-left: 3px solid var(--gold-accent);
+      padding: 8px 12px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 10px;
+    }
+
+    .body-p {
+      font-size: 0.94rem;
+      line-height: 1.65;
+      color: #273746;
+      text-align: justify;
+      margin-bottom: 8px;
+    }
+    .body-p strong {
+      color: var(--text-blue);
+      font-weight: 700;
+    }
+
+    /* KHUNG ẢNH RÕ RÀNG */
+    .photo-box {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1.5px solid var(--gold-accent);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+      cursor: pointer;
+      background: #000;
+    }
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    .photo-box:active img {
+      transform: scale(0.97);
+    }
+    .zoom-badge {
+      position: absolute;
+      bottom: 6px; right: 6px;
+      background: rgba(8, 36, 58, 0.88);
+      color: #fed976;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* THẺ LỜI CHÚC 4 ANH EM */
+    .brother-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .brother-item {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 7px 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+    .brother-ava {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-accent);
+      object-fit: cover;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .brother-info {
+      flex: 1;
+      overflow: hidden;
+    }
+    .brother-name {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-blue);
+      margin-bottom: 1px;
+    }
+    .brother-wish {
+      font-size: 0.78rem;
+      line-height: 1.35;
+      color: #334155;
+      font-style: italic;
+    }
+
+    /* CHÂN TRANG ĐIỀU HƯỚNG */
+    .page-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 6px;
+      border-top: 1px solid rgba(196, 151, 51, 0.25);
+    }
+    .page-index {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--gold-accent);
+    }
+    .flip-hint {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-blue);
+      background: rgba(196, 151, 51, 0.15);
+      border: 1px solid var(--gold-accent);
+      padding: 3px 10px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* BẢNG NÚT BẤM BÊN DƯỚI */
+    .dock-controls {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 20;
+      width: 100%;
+      max-width: 600px;
+      justify-content: center;
+    }
+    .btn-dock {
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1.5px solid var(--gold-glow);
+      background: rgba(8, 36, 58, 0.88);
+      color: #fff9e6;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+      transition: all 0.2s;
+    }
+    .btn-dock:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .btn-dock.gold-btn {
+      background: linear-gradient(135deg, #c49733 0%, #f4d06f 100%);
+      color: #08243a;
+      border: none;
+      box-shadow: 0 4px 16px rgba(244, 208, 111, 0.5);
+    }
+
+    /* LIGHTBOX PHÓNG TO ẢNH FULL MÀN HÌNH */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      flex-direction: column;
+    }
+    .lightbox-modal.show {
+      display: flex;
+    }
+    .lightbox-img {
+      max-width: 95vw;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 2px solid rgba(255,255,255,0.25);
+    }
+    .lightbox-close-btn {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      border: none;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-title {
+      color: #fed976;
+      font-size: 1rem;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    #fxCanvas {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Tương thích màn hình điện thoại xoay ngang hoặc nhỏ */
+    @media (max-width: 820px) {
+      .stage {
+        height: 540px;
+      }
+      .sheet-side {
+        padding: 18px 16px 12px;
+      }
+      .quote-merri {
+        font-size: 0.88rem;
+        line-height: 1.5;
+      }
+      .body-p {
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+      .brother-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="fxCanvas"></canvas>
+
+  <!-- Bong bóng nước đáy biển -->
+  <div class="bubbles-container">
+    <div class="bubble" style="left: 10%; width: 18px; height: 18px; animation-duration: 12s; animation-delay: 0s;"></div>
+    <div class="bubble" style="left: 26%; width: 24px; height: 24px; animation-duration: 16s; animation-delay: 2s;"></div>
+    <div class="bubble" style="left: 48%; width: 14px; height: 14px; animation-duration: 10s; animation-delay: 4s;"></div>
+    <div class="bubble" style="left: 70%; width: 22px; height: 22px; animation-duration: 14s; animation-delay: 1s;"></div>
+    <div class="bubble" style="left: 88%; width: 28px; height: 28px; animation-duration: 18s; animation-delay: 3s;"></div>
+  </div>
+
+  <!-- Chú Rùa Biển thật bơi lội -->
+  <img src="real_turtle.png" class="real-turtle-actor" alt="Rùa biển thật">
+  <img src="real_fish.png" class="real-fish-actor-1" alt="Cá nhiệt đới thật">
+
+  <!-- Tiêu đề trên đỉnh -->
+  <div class="top-bar">
+    <div class="voyage-tag">
+      <span>🐋</span> HẢI TRÌNH ĐẠI DƯƠNG • 6 TRANG Ý NGHĨA <span>⚓</span>
+    </div>
+  </div>
+
+  <!-- SÂN KHẤU 3D LẬT SÁCH MỞ RỘNG (GIỮ NGUYÊN FORM CŨ TRANG ĐÔI) -->
+  <div class="stage">
+    <div class="book" id="bookStage">
+
+      <!-- Gáy sách gân nổi -->
+      <div class="spine-crease"></div>
+
+      <!-- TẤM BÌA TRÁI CỐ ĐỊNH -->
+      <div class="book-base-left">
+        <svg viewBox="0 0 100 100" width="70" height="70" style="margin-bottom: 8px; opacity: 0.7;">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#f4d06f" stroke-width="2" stroke-dasharray="3,2"/>
+          <path d="M22,68 C35,78 65,78 78,68 L74,62 L26,62 Z" fill="#f4d06f"/>
+          <path d="M48,22 L48,62 L30,62 Z" fill="#ffffff"/>
+          <path d="M52,28 L52,62 L70,62 Z" fill="#c49733"/>
+        </svg>
+        <div style="font-family: 'Cinzel', serif; letter-spacing: 2px; font-size: 0.85rem; color: #f4d06f;">
+          HẢI HÀNH BẤT TẬN
+        </div>
+        <div style="font-size: 0.75rem; color: #cbd5e1; font-style: italic; margin-top: 4px;">
+          "Gia đình là bến đỗ bình yên"
+        </div>
+      </div>
+
+      <!-- ================= TỜ 1: BÌA TRƯỚC & TRANG 1 ================= -->
+      <div class="sheet cover-front" id="sheet1" style="z-index: 6;">
+        <!-- BÌA TRƯỚC (BÌA NGOÀI) -->
+        <div class="sheet-side front" onclick="flipNext()">
+          <div class="corner-decor c-tl"></div>
+          <div class="corner-decor c-tr"></div>
+          <div class="corner-decor c-bl"></div>
+          <div class="corner-decor c-br"></div>
+
+          <div style="margin-top: 25px;">
+            <div style="font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 3px; color: var(--gold-glow); margin-bottom: 12px;">
+              SỔ TAY HẢI HÀNH ĐẶC BIỆT
+            </div>
+
+            <div style="width: 120px; height: 120px; margin: 0 auto 15px;">
+              <svg viewBox="0 0 120 120" width="120" height="120">
+                <circle cx="60" cy="60" r="54" fill="none" stroke="#f4d06f" stroke-width="2" stroke-dasharray="4,2"/>
+                <path d="M22,82 Q60,98 98,82 L92,74 L28,74 Z" fill="#f4d06f"/>
+                <path d="M57,20 L57,74 L28,74 Z" fill="#ffffff" opacity="0.95"/>
+                <path d="M63,28 L63,74 L90,74 Z" fill="#fed976" opacity="0.9"/>
+                <line x1="60" y1="12" x2="60" y2="76" stroke="#c49733" stroke-width="2.5"/>
+                <polygon points="60,12 60,18 72,15" fill="#f4d06f"/>
+                <path d="M15,86 Q30,80 45,86 T75,86 T105,86" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2.5"/>
+              </svg>
+            </div>
+
+            <h1 style="font-family: 'Cinzel', serif; font-size: 1.65rem; color: #ffffff; line-height: 1.35; margin-bottom: 12px; font-weight: 800;">
+              CHÚC MỪNG SINH NHẬT<br><span style="color: #fed976; font-size: 1.75rem;">THUYỀN TRƯỞNG BỐ</span>
+            </h1>
+
+            <p style="color: #d1e5f0; font-size: 1rem; font-style: italic; max-width: 320px; margin: 0 auto; line-height: 1.6; font-family: 'Merriweather', serif;">
+              "Vững vàng tay lái ngàn trùng sóng gió • Ấm áp ngọn đèn soi sáng bến bờ con"
+            </p>
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <div class="flip-hint" style="color: #ffffff; background: rgba(244, 208, 111, 0.25); border-color: var(--gold-glow); font-size: 0.88rem; padding: 6px 18px;">
+              Bấm để mở cuốn sổ ❯
+            </div>
+            <div style="font-size: 0.8rem; color: #cbd5e1; margin-top: 8px;">
+              Món quà từ 4 người con trai yêu Bố
+            </div>
+          </div>
+        </div>
+
+        <!-- TRANG 1: LỜI TỰA HẢI TRÌNH & ẢNH ĐẠI DIỆN BỐ VÀ GIA ĐÌNH -->
+        <div class="sheet-side back" onclick="flipPrev()">
+          <div class="corner-decor c-tl"></div>
+          <div class="corner-decor c-tr"></div>
+          <div class="corner-decor c-bl"></div>
+          <div class="corner-decor c-br"></div>
+
+          <div>
+            <div class="page-title">
+              <span>🧭</span> TRANG 1: BẢN LĨNH & TÌNH CHA
+            </div>
+
+            <div class="quote-merri">
+              "Biển cả dạy người ta lòng kiên cường trước sóng gió, nhưng chính sự hy sinh của Bố mới là ngọn hải đăng soi đường cho 4 anh em khôn lớn."
+            </div>
+
+            <!-- Ảnh gia đình chính -->
+            <div class="photo-box" style="height: 205px; margin-bottom: 10px;" onclick="event.stopPropagation(); zoomPhoto('anh_gia_dinh/photo_1.jpg', 'Vị Thuyền Trưởng Kính Yêu & Điểm Tựa Gia Đình')">
+              <img src="anh_gia_dinh/photo_1.jpg" alt="Thuyền Trưởng Bố">
+              <div class="zoom-badge">🔍 Chạm xem to</div>
+            </div>
+
+            <p class="body-p">
+              Kính gửi <strong>Bố thân yêu</strong>! Cả một đời dạn dày sóng gió biển khơi, Bố đã lèo lái con tàu gia đình cập bến bình an, nuôi nấng 4 anh em khôn lớn nên người.
+            </p>
+          </div>
+
+          <div class="page-footer">
+            <span class="flip-hint">❮ Lật lại bìa</span>
+            <span class="page-index">— 01 / 06 —</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= TỜ 2: TRANG 2 & TRANG 3 ================= -->
+      <div class="sheet" id="sheet2" style="z-index: 5;">
+        <!-- TRANG 2: HẢI HÀNH & BÓNG DÁNG BỐ (2 ẢNH ĐÔI) -->
+        <div class="sheet-side front" onclick="flipNext()">
+          <div class="corner-decor c-tl"></div>
+          <div class="corner-decor c-tr"></div>
+          <div class="corner-decor c-bl"></div>
+          <div class="corner-decor c-br"></div>
+
+          <div>
+            <div class="page-title">
+              <span>⚓</span> TRANG 2: BƯỚC CHÂN NGƯỜI CHA
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+              <div class="photo-box" style="height: 180px;" onclick="event.stopPropagation(); zoomPhoto('anh_gia_dinh/photo_2.jpg', 'Bình an bên người thân')">
+                <img src="anh_gia_dinh/photo_2.jpg" alt="Ảnh Bố 2">
+                <div class="zoom-badge">🔍 Xem to</div>
+              </div>
+              <div class="photo-box" style="height: 180px;" onclick="event.stopPropagation(); zoomPhoto('anh_gia_dinh/photo_3.jpg', 'Nụ cười của Bố')">
+                <img src="anh_gia_dinh/photo_3.jpg" alt="Ảnh Bố 3">
+                <div class="zoom-badge">🔍 Xem to</div>
+              </div>
+            </div>
+
+            <p class="body-p">
+              Những chuyến đi biển dài ngày đổi lại tương lai vững vàng cho 4 anh em. Bố luôn dạy chúng con tinh thần của người đi biển: <strong>kiên cường, trung trực và biết yêu thương gia đình</strong>.
+            </p>
+          </div>
+
+          <div class="page-footer">
+            <span class="page-index">— 02 / 06 —</span>
+            <span class="flip-hint">Trang sau ❯</span>
+          </div>
+        </div>
+
+        <!-- TRANG 3: LỜI CHÚC CỦA 4 ANH EM KÈM ẢNH ĐẠI DIỆN -->
+        <div class="sheet-side back" onclick="flipPrev()">
+          <div class="corner-decor c-tl"></div>
+          <div class="corner-decor c-tr"></div>
+          <div class="corner-decor c-bl"></div>
+          <div class="corner-decor c-br"></div>
+
+          <div>
+            <div class="page-title">
+              <span>🌊</span> TRANG 3: 4 ANH EM KÍNH CHÚC
+            </div>
+
+            <div class="brother-grid">
+              <div class="brother-item">
+                <img src="anh_gia_dinh/photo_9.jpg" class="brother-ava" alt="Con Cả" onclick="event.stopPropagation(); zoomPhoto('anh_gia_dinh/photo_9.jpg', 'Ảnh Con Cả')">
+                <div class="brother-info">
+                  <div class="brother-name">⚓ Con Cả</div>
+                  <div class="brother-wish">"Kính chúc Bố luôn giữ vững sức khỏe thép, mãi là điểm tựa lớn nhất!"</div>
+                </div>
+              </div>
+
+              <div class="brother-item">
+                <img src="anh_gia_dinh/photo_10.jpg" class="brother-ava" alt="Con Thứ Hai" onclick="event.stopPropagation(); zoomPhoto('anh_gia_dinh/photo_10.jpg', 'Ảnh Con Thứ Hai')">
+                <div class="brother-info">
+                  <div class="brother-name">🧭 Con Thứ Hai</div>
+                  <div class="brother-wish">"Chúc Thuyền Trưởng Bố mỗi hải trình đều thuận buồm xuôi gió!"</div>
+                </div>
+              </div>
+
+              <div class="brother-item">
+                <img src="anh_gia_dinh/photo_11.jpg" class="brother-ava" alt="Con Thứ Ba" onclick="event.stopPropagation(); zoomPhoto('anh_gia_dinh/photo_11.jpg', 'Ảnh Con Thứ Ba')">
+                <div class="brother-info">
+                  <div class="brother-name">⭐ Con Thứ Ba</div>
+                  <div class="brother-wish">"Cảm ơn Bố vì những nhọc nhằn. Tuổi mới chúc Bố luôn an vui!"</div>
+                </div>
+              </div>
+
+              <div class="brother-item">
+                <img src="anh_gia_dinh/photo_4.jpg" class="brother-ava" alt="Con Út" onclick="event.stopPropagation(); zoomPhoto('anh_gia_dinh/photo_4.jpg', 'Ảnh Con Út')">
+                <div class="brother-info">
+                  <div class="brother-name">⛵ Con Út</div>
+                  <div class="brother-wish">"Con chúc Bố luôn rạng rỡ và sống đời hạnh phúc bên chúng con!"</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="quote-merri" style="font-size: 0.88rem; margin: 4px 0 0;">
+              "Dù mỗi người một chí hướng, 4 anh em luôn chung một niềm tự hào vô bờ bến về Bố."
+            </div>
+          </div>
+
+          <div class="page-footer">
+            <span class="flip-hint">❮ Lật lại</span>
+            <span class="page-index">— 03 / 06 —</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= TỜ 3: TRANG 4 & TRANG 5 ================= -->
+      <div class="sheet" id="sheet3" style="z-index: 4;">
+        <!-- TRANG 4: BỘ ẢNH KỶ NIỆM GIA ĐÌNH -->
+        <div class="sheet-side front" onclick="flipNext()">
+          <div class="corner-decor c-tl"></div>
+          <div class="corner-decor c-tr"></div>
+          <div class="corner-decor c-bl"></div>
+          <div class="corner-decor c-br"></div>
+
+          <div>
+            <div class="page-title">
+              <span>🖼️</span> TRANG 4: KỶ NIỆM GIA ĐÌNH
+            </div>
+
+            <!-- Bộ 3 ảnh kỷ niệm sum vầy -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 10px;">
+              <div class="photo-box" style="height: 105px;" onclick="event.stopPropagation(); zoomPhoto('anh_gia_dinh/photo_5.jpg', 'Khoảnh khắc sum vầy')">
+                <img src="anh_gia_dinh/photo_5.jpg" alt="Kỷ niệm 1">
+                <div class="zoom-badge" style="font-size: 0.65rem; padding: 1px 5px;">🔍 To</div>
+              </div>
+              <div class="photo-box" style="height: 105px;" onclick="event.stopPropagation(); zoomPhoto('anh_gia_dinh/photo_6.jpg', 'Nụ cười đầm ấm của Bố')">
+                <img src="anh_gia_dinh/photo_6.jpg" alt="Kỷ niệm 2">
+                <div class="zoom-badge" style="font-size: 0.65rem; padding: 1px 5px;">🔍 To</div>
+              </div>
+              <div class="photo-box" style="height: 105px;" onclick="event.stopPropagation(); zoomPhoto('anh_gia_dinh/photo_7.jpg', 'Hạnh phúc đong đầy')">
+                <img src="anh_gia_dinh/photo_7.jpg" alt="Kỷ niệm 3">
+                <div class="zoom-badge" style="font-size: 0.65rem; padding: 1px 5px;">🔍 To</div>
+              </div>
+            </div>
+
+            <!-- Ảnh cha con thân thương (photo_8) -->
+            <div class="photo-box" style="height: 145px; margin-bottom: 8px;" onclick="event.stopPropagation(); zoomPhoto('anh_gia_dinh/photo_8.jpg', 'Khoảnh khắc cha và con')">
+              <img src="anh_gia_dinh/photo_8.jpg" alt="Khoảnh khắc cha con">
+              <div class="zoom-badge">🔍 Chạm xem to</div>
+            </div>
+
+            <p class="body-p" style="font-size: 0.9rem;">
+              Chúc Bố bước sang tuổi mới luôn dồi dào sức sống, nụ cười luôn rạng rỡ và mãi là niềm tự hào sáng ngời của các con!
+            </p>
+          </div>
+
+          <div class="page-footer">
+            <span class="page-index">— 04 / 06 —</span>
+            <span class="flip-hint">Trang sau ❯</span>
+          </div>
+        </div>
+
+        <!-- TRANG 5: LỜI KẾT HẢI TRÌNH & CHỮ KÝ GIA ĐÌNH -->
+        <div class="sheet-side back" onclick="prevPage()">
+          <div class="corner-decor c-tl"></div>
+          <div class="corner-decor c-tr"></div>
+          <div class="corner-decor c-bl"></div>
+          <div class="corner-decor c-br"></div>
+
+          <div style="text-align: center; margin-top: 15px;">
+            <div style="font-size: 2.5rem; margin-bottom: 8px;">⚓ 🚢 🌊</div>
+            <div style="font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 2px; color: var(--gold-accent); margin-bottom: 10px;">
+              TRANG 5 • LỜI KẾT HẢI TRÌNH
+            </div>
+
+            <h2 style="font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--text-blue); margin-bottom: 14px; font-weight: 800;">
+              CHÚNG CON YÊU BỐ RẤT NHIỀU!
+            </h2>
+
+            <div class="quote-merri" style="font-size: 1.05rem; line-height: 1.7; margin: 0 10px 18px;">
+              "Dù mai này chúng con có đi xa đến đâu, chiếc la bàn trong tim 4 anh em sẽ mãi mãi hướng về Bố – người thuyền trưởng vĩ đại nhất của cuộc đời chúng con!"
+            </div>
+
+            <div style="font-family: 'Alex Brush', cursive; font-size: 2.2rem; color: var(--gold-accent); line-height: 1.2; margin-bottom: 18px;">
+              4 Người Con Trai Kính Chúc! ❤️
+            </div>
+
+            <button class="btn-dock gold-btn" onclick="event.stopPropagation(); celebrateFireworks()" style="margin: 0 auto; padding: 10px 22px;">
+              🎉 Bắn Pháo Hoa Chúc Bố!
+            </button>
+          </div>
+
+          <div class="page-footer">
+            <span class="flip-hint">❮ Lật lại</span>
+            <span class="page-index">— 05 / 06 —</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= TỜ 4: TRANG 6 (TÂM THƯ CỦA CON VỪA VẶN HOÀN TOÀN) ================= -->
+      <div class="sheet cover-back" id="sheet4" style="z-index: 3;">
+        <!-- MẶT TRƯỚC TỜ 4 (TRANG 6): BỨC TÂM THƯ THIÊNG LIÊNG TỰ ĐÁY LÒNG CON (FULL KHÔNG CẦN KÉO) -->
+        <div class="sheet-side front" onclick="nextPage()" style="padding: 22px 24px 14px; justify-content: space-between;">
+          <div class="corner-decor c-tl"></div>
+          <div class="corner-decor c-tr"></div>
+          <div class="corner-decor c-bl"></div>
+          <div class="corner-decor c-br"></div>
+
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1.5px solid rgba(196,151,51,0.35); padding-bottom: 5px; margin-bottom: 10px;">
+              <div style="font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 800; color: var(--text-blue); letter-spacing: 1.5px;">
+                📜 TRANG 6: LỜI TỰ ĐÁY LÒNG CON
+              </div>
+              <div style="font-size: 1.2rem;">💌</div>
+            </div>
+
+            <p style="font-size: 0.93rem; line-height: 1.62; color: #223344; text-align: justify; margin-bottom: 8px;">
+              Hôm nay con làm thiệp này, con muốn chúc bố thứ nhất luôn mạnh khỏe, luôn suôn sẻ trong mọi việc và luôn yêu thương anh em con và mẹ nữa.
+            </p>
+
+            <p style="font-size: 0.93rem; line-height: 1.62; color: #223344; text-align: justify; margin-bottom: 8px;">
+              Cảm ơn bố đã hi sinh vì những gánh nặng và những vất vả nhọc nhằn trong suốt cuộc hành trình này. Cảm ơn bố luôn là chỗ dựa vật chất và tinh thần cho cả gia đình mình. Con và các em luôn biết ơn về những điều bố làm để đổi lấy hành trình trưởng thành của bọn con.
+            </p>
+
+            <p style="font-size: 0.93rem; line-height: 1.62; color: #223344; text-align: justify; margin-bottom: 8px;">
+              Con mong rằng rồi mai sau này đi nữa mọi sự mong đợi của bố, cũng là sự trưởng thành của bọn con. Được nhìn thấy 4 chàng trai, 4 niềm ước mơ lớn nhất cuộc đời bố mong mỏi đều được trưởng thành và yên bề gia thất.
+            </p>
+
+            <div style="background: rgba(196, 151, 51, 0.1); border-left: 3.5px solid var(--gold-accent); padding: 8px 12px; border-radius: 0 8px 8px 0; margin: 8px 0;">
+              <p style="font-size: 0.92rem; line-height: 1.58; color: #113854; text-align: justify;">
+                Và có bạn bè hỏi con rằng đâu là hình mẫu lý tưởng của con, thì con chẳng ngần ngại nói là Bố của con. Con luôn tự hào với chúng nó rằng:
+                <strong style="color: #b8860b; display: block; text-align: center; margin: 4px 0; font-size: 0.98rem; font-family: 'Merriweather', serif;">
+                  “Cái Bóng Lớn Nhất Trong Cuộc Đời Tao Chỉ Có Thể Là Bố Tao”
+                </strong>
+                Nên là nếu mong rằng có kiếp sau, không chỉ con và các em của con nữa đều mong điều tuyệt vời nhất là: 
+                <strong style="color: #b8860b; font-size: 0.98rem;">“Làm Con Của Bố Mẹ”</strong>.
+              </p>
+            </div>
+
+            <div style="font-family: 'Alex Brush', cursive; font-size: 1.9rem; color: var(--gold-accent); text-align: right; line-height: 1; margin-top: 4px;">
+              Con trai cả & 4 anh em kính chúc! ❤️
+            </div>
+          </div>
+
+          <div class="page-footer">
+            <span class="page-index">— 06 / 06 —</span>
+            <span class="flip-hint">Đóng sổ ❯</span>
+          </div>
+        </div>
+
+        <!-- MẶT BÌA SAU CÙNG CỦA CUỐN SỔ -->
+        <div class="sheet-side back" onclick="prevPage()">
+          <div class="corner-decor c-tl"></div>
+          <div class="corner-decor c-tr"></div>
+          <div class="corner-decor c-bl"></div>
+          <div class="corner-decor c-br"></div>
+
+          <div style="text-align: center; margin: auto 0;">
+            <div style="font-size: 3rem; margin-bottom: 12px;">⚓ 🐋 🌊</div>
+            <h2 style="font-family: 'Cinzel', serif; font-size: 1.6rem; color: #ffffff; margin-bottom: 10px; font-weight: 800;">
+              HẢI HÀNH BÌNH AN
+            </h2>
+            <p style="color: #cbd5e1; font-size: 1rem; font-style: italic; font-family: 'Merriweather', serif;">
+              "Bến đỗ gia đình luôn tràn ngập tình thương đón đợi Bố!"
+            </p>
+            <div style="margin-top: 20px;">
+              <button class="btn-dock gold-btn" onclick="event.stopPropagation(); celebrateFireworks()" style="margin: 0 auto; padding: 12px 24px;">
+                ✨ Chúc Mừng Sinh Nhật Bố
+              </button>
+            </div>
+          </div>
+
+          <div class="page-footer">
+            <span class="flip-hint" style="color: #ffffff; border-color: var(--gold-glow);">❮ Mở lại sổ</span>
+            <span class="page-index" style="color: var(--gold-glow);">— BÌA SAU —</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NÚT ĐIỀU KHIỂN ĐÁY -->
+  <div class="dock-controls">
+    <button class="btn-dock" id="btnPrev" onclick="prevPage()">
+      ❮ Trang Trước
+    </button>
+    <button class="btn-dock gold-btn" onclick="goToLetter()" title="Mở ngay bức tâm thư xúc động của con ở Trang 6">
+      📜 Tâm Thư Trang 6
+    </button>
+    <button class="btn-dock" id="btnNext" onclick="nextPage()">
+      Trang Sau ❯
+    </button>
+  </div>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeZoom()">
+    <button class="lightbox-close-btn" onclick="closeZoom()">✕</button>
+    <img src="" class="lightbox-img" id="lightboxImg" alt="Xem ảnh to" onclick="event.stopPropagation()">
+    <div class="lightbox-title" id="lightboxTitle"></div>
+  </div>
+
+  <script>
+    // Quản lý 4 Sheets (Bìa + 6 Trang + Bìa Sau)
+    let currentSheetIndex = 0;
+    const sheets = [
+      document.getElementById('sheet1'),
+      document.getElementById('sheet2'),
+      document.getElementById('sheet3'),
+      document.getElementById('sheet4')
+    ];
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+
+    function refreshSheetLayers() {
+      sheets.forEach((sheet, idx) => {
+        if (sheet.classList.contains('flipped')) {
+          sheet.style.zIndex = idx + 1;
+        } else {
+          sheet.style.zIndex = (sheets.length - idx) + 5;
+        }
+      });
+      btnPrev.disabled = (currentSheetIndex === 0);
+      btnNext.disabled = (currentSheetIndex === sheets.length);
+    }
+
+    function nextPage() {
+      if (currentSheetIndex < sheets.length) {
+        sheets[currentSheetIndex].classList.add('flipped');
+        currentSheetIndex++;
+        playTurnSound();
+        refreshSheetLayers();
+      }
+    }
+
+    function prevPage() {
+      if (currentSheetIndex > 0) {
+        currentSheetIndex--;
+        sheets[currentSheetIndex].classList.remove('flipped');
+        playTurnSound();
+        refreshSheetLayers();
+      }
+    }
+
+    // Nhảy thẳng tới bức Tâm Thư Trang 6
+    function goToLetter() {
+      // Flip sheet 1, 2, 3 để mở ra sheet 4 (Trang 6)
+      sheets[0].classList.add('flipped');
+      sheets[1].classList.add('flipped');
+      sheets[2].classList.add('flipped');
+      sheets[3].classList.remove('flipped');
+      currentSheetIndex = 3;
+      playTurnSound();
+      refreshSheetLayers();
+    }
+
+    // Phím điều khiển
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextPage();
+      if (e.key === 'ArrowLeft') prevPage();
+    });
+
+    // Lightbox
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+
+    function zoomPhoto(src, title) {
+      lightboxImg.src = src;
+      lightboxTitle.innerText = title || 'Ảnh Kỷ Niệm';
+      lightboxModal.classList.add('show');
+    }
+
+    function closeZoom() {
+      lightboxModal.classList.remove('show');
+    }
+
+    // Web Audio Sound
+    let audioCtx = null;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTurnSound() {
+      try {
+        const ctx = getAudioCtx();
+        const bufferSize = ctx.sampleRate * 0.08;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.25));
+        }
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 1100;
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        noise.start();
+      } catch (e) {}
+    }
+
+    function playBell() {
+      try {
+        const ctx = getAudioCtx();
+        const chords = [523.25, 659.25, 783.99, 1046.50];
+        chords.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.08);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 1.2);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + idx * 0.08);
+          osc.stop(ctx.currentTime + idx * 0.08 + 1.3);
+        });
+      } catch (e) {}
+    }
+
+    // Pháo hoa Canvas
+    const canvas = document.getElementById('fxCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function celebrateFireworks() {
+      playBell();
+      const palette = ['#c49733', '#fed976', '#38bdf8', '#e0f2fe', '#f43f5e', '#ffffff'];
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2.3;
+
+      for (let b = 0; b < 5; b++) {
+        setTimeout(() => {
+          const bx = cx + (Math.random() * 260 - 130);
+          const by = cy + (Math.random() * 180 - 90);
+          for (let i = 0; i < 35; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const spd = Math.random() * 6 + 2;
+            particles.push({
+              x: bx,
+              y: by,
+              vx: Math.cos(angle) * spd,
+              vy: Math.sin(angle) * spd,
+              alpha: 1,
+              decay: Math.random() * 0.018 + 0.012,
+              size: Math.random() * 3.5 + 2,
+              color: palette[Math.floor(Math.random() * palette.length)]
+            });
+          }
+        }, b * 160);
+      }
+    }
+
+    function animateFx() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.08;
+        p.alpha -= p.decay;
+        if (p.alpha <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+      requestAnimationFrame(animateFx);
+    }
+    animateFx();
+
+    refreshSheetLayers();
+  </script>
+</body>
+</html>
